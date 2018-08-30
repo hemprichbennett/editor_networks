@@ -35,4 +35,6 @@ net=networkPlot(NetMatrix, n = 30, Title = "Co-Citation Network", type = "frucht
 NetMatrix <- biblioNetwork(M, analysis = "co-occurrences", network = "keywords", sep = ";")
 
 # Plot the network
+jpeg('figures/example_keywords.jpg', units = 'in', width = 9, height = 9, res=300)
 net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
+dev.off()
