@@ -25,16 +25,14 @@ S <- summary(object = results, k = 10, pause = FALSE)
 DF <- dominance(results, k = 10)
 DF
 
-# Create a co-citation network
-NetMatrix <- biblioNetwork(M, analysis = "co-citation", network = "references", sep = ".  ")
-# Plot the network
-net=networkPlot(NetMatrix, n = 30, Title = "Co-Citation Network", type = "fruchterman", size=T, remove.multiple=FALSE, labelsize=0.7,edgesize = 5)
 
-
-#Keyword co-occurence matrix
-NetMatrix <- biblioNetwork(M, analysis = "co-occurrences", network = "keywords", sep = ";")
+auths <-  biblioNetwork(M, analysis = "co-occurrences", network = "authors", sep = ";")
 
 # Plot the network
-jpeg('figures/example_keywords.jpg', units = 'in', width = 9, height = 9, res=300)
-net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
+jpeg('figures/example_authors.jpg', units = 'in', width = 9, height = 9, res=300)
+net=networkPlot(auths, normalize="association", weighted=T, n = 30, Title = "Author Co-occurrences", type = "circle", size=T,edgesize = 5,labelsize=0.7)
 dev.off()
+
+
+
+
