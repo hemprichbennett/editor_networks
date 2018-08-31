@@ -19,3 +19,15 @@ df <- read.csv('data/processed_data/citation_df.csv', row.names = 1, stringsAsFa
 auths <-  biblioNetwork(df, analysis = "collaboration", network = "authors", sep = ";")
 
 auth_net <- graph_from_adjacency_matrix(auths, mode = 'undirected')
+
+#A trial, give the nodes a value indicating if they're a Bennett or a Caravaggi
+
+V(auth_net)$dummy <- 'non'
+
+desired_names <- c('BENNETT', 'CARAVAGGI')
+V(auth_net)$dummy[grep(paste(desired_names,collapse="|"), V(auth_net)$name)] <- 'badass'
+
+V(auth_net)$dummy <- as.factor(V(auth_net)$dummy)
+
+assortativity_nominal(auth_net, V(auth_net)$dummy, directed=F)
+#Low assortivity is detected between our surnames
