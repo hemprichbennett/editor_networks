@@ -12,7 +12,7 @@ library(bibliometrix)
 setwd(here())
 
 #Load the bib file, convert it to dataframe
-D <- readFiles('data/raw_data/scopus.bib')
+D <- readFiles('data/raw_data/scopus_bibs/1944-1995.bib')
 M <- convert2df(D, dbsource = "scopus", format = "bibtex")
 
 #Get exploratory results
