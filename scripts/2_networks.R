@@ -8,12 +8,14 @@
 
 library(here)
 library(bibliometrix)
+library(igraph)
 
 setwd(here())
 
 df <- read.csv('data/processed_data/citation_df.csv', row.names = 1, stringsAsFactors = F)
 
 
-auths <-  biblioNetwork(df, analysis = "co-occurrences", network = "authors", sep = ";")
+#Convert the dataframe into a network using bibliometrix, and then into an igraph object
+auths <-  biblioNetwork(df, analysis = "collaboration", network = "authors", sep = ";")
 
-net=networkPlot(auths, normalize="association", weighted=T, n = 30, Title = "Author Co-occurrences", type = "circle", size=T,edgesize = 5,labelsize=0.7)
+auth_net <- graph_from_adjacency_matrix(auths, mode = 'undirected')
