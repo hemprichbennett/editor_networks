@@ -12,7 +12,7 @@ setwd(here())
 
 ####Load in the files ####
 
-filenames <- paste('data/raw_data/', list.files(path = 'data/raw_data/', pattern = 'bib'), sep = '')
+filenames <- paste('data/raw_data/scopus_bibs/', list.files(path = 'data/raw_data/scopus_bibs/', pattern = 'bib'), sep = '')
 
 file_list <- lapply(filenames, readFiles)
 files <- lapply(file_list, function(x) convert2df(x, dbsource = "scopus", format = "bibtex"))
